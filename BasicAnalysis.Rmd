@@ -1,0 +1,462 @@
+---
+title: "Pittsburgh 311 call analysis"
+author: "Brian Bowling"
+date: "August 23, 2018"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+# Introduction
+
+This project analyzes data from the Western Pennsylvania Regional Data Center on 311 service requests in Pittsburgh.
+https://data.wprdc.org/dataset/311-data
+
+This is a basic analysis of the Pittsburgh 311 service call data. It will create several charts as well as a few static and one interactive map. In the works is a per capita analysis that will use neighborhood resident and daytime populations to normalize the call data.
+
+If you want to skip the data preparation and cleanign stuff, click on Data Analysis in the Table of Contents.
+
+# Preparation
+
+## Loading the packages and data
+
+```{r load packages, echo=F, message=F}
+# libraries
+library(tidyverse)
+library(lubridate)
+library(stringr)
+library(readxl)
+library(leaflet)
+library(DT)
+
+```
+
+
+```{r load data, echo=F, message = F}
+# get the raw data
+# Downloaded on 8/7/2018
+data_file <- 'raw_data/76fda9d0-69be-4dd5-8108-0de7907fc5a4.csv'
+
+data_311 <- read_csv(data_file)
+
+```
+
+## Data prep and cleaning
+
+There are several chores that need to be done with the analysis including:
+* The first datasets I analyzed had duplicate records. Since then I haven't seen that problem but still check for it.
+* Fix the column names
+* Remove months with partial data
+* The 311 center receives calls about problems outside the city limits. These are relevant to an analysis of the center's performance but not to this neighborhood analysis, so I'm going to eliminate them.
+* Clean up the request_type field
+
+
+### column names
+
+```{r fix column names, warning=F}
+# Preliminary cleanup
+# fix column names
+colnames(data_311) = tolower(make.names(colnames(data_311)))
+
+data_311 <- rename(data_311,'id'='x_id')
+
+```
+
+### Duplicate records?
+
+Are the values in the id and request_id fields unique?
+
+```{r check for duplicates, echo=F}
+print(paste0("Number of records: ", nrow(data_311)))
+print(paste0("Number of IDs: ",length(unique(data_311$id))))
+print(paste0("Number of REQUEST_IDs: ",length(unique(data_311$request_id))))
+```
+
+In previous versions, there were duplicate records. No problem this time. If there is the next time, use remove the comment marker and run the following.
+
+```{r remove duplicates}
+# data_311 <- data_311[!duplicated(data_311),]
+```
+
+### partial months
+
+
+To simplify things, add a new field for creation date sans time
+
+```{r}
+data_311['created_date'] <- as.Date(data_311$created_on)
+```
+
+Take a look at the data to see if there are partial months at the start or end of the data period.
+
+```{r}
+data_311 %>%
+  group_by(yr_month=paste0(year(created_date),'-', month(created_date))) %>%
+  summarize(days_with_data = n_distinct(day(created_date))) %>%
+  filter(days_with_data < 28)
+
+  
+
+```
+
+Have partial data in February and April of 2015 and, of course, August 2018. So remove records with created_date before May 1, 2015 and after July 31, 2018
+
+
+```{r}
+culls <- data_311$id[data_311$created_date < as.Date('2015-05-01')]
+data_311 <- data_311[!data_311$id %in% culls,]
+```
+
+Have another data issue since August 2018 is obviously only a partial month. I'll remove it from the analysis.
+
+```{r}
+culls <- data_311$id[data_311$created_date >= as.Date('2018-08-01')]
+data_311 <- data_311[!data_311$id %in% culls,]
+```
+
+### calls from outside the city
+
+There are two other issues. Some rows have a lot of NAs and some are classified as "OUT_OF_BOUNDS", which means they deal with issues that are in the suburbs rather than in the city. I'm going to get rid of the latter and then take a look at what's left of the NA rows.
+
+```{r outside of city}
+
+data_311 <- data_311[!data_311$geo_accuracy == 'OUT_OF_BOUNDS',]
+
+```
+
+
+### request_type field
+
+Several of the problems are simply capitalization differences, so set evertying in the field to lowercase.
+
+
+```{r lowercase request_type}
+
+data_311$request_type = tolower(data_311$request_type)
+
+```
+
+How clean is the request_type field?
+
+```{r}
+data_311 %>%
+  group_by(request_type) %>%
+  summarise(count=n()) %>%
+  nrow()
+
+```
+
+So there are 284 different request types. Eyeballing them, several of seem nearly identical. It looks like they could be grouped into general categories such as street complaints, lot complaints, etc.
+
+The WPRDC provides a spreadsheet that categorizes requests, I'm going to import it, join it to the 311 data and see whether that cleans things up.
+
+In my first attempts to join these two, I ended up with a lot of NAs because of inconsistencies in the request_type field. In a separate script I created a table from data_311 that included a list of request types and departments. I joined that with the categories table and exported the result to a csv that I manually edited in Excel since the R editor is too painful to use.
+
+I'll admit that some of the listings in the categories table don't make much sense. Calls dealing with handicapped ramps and parking, for example, are in three different categories -- Road/Street Issues, Parking and, the one that makes sense to me, Accessibility. Where the WPRDC file had a category assigned, I left it alone and generally tried to put the ones with missing categories in the same category as the ones they resembled regardless of whether the classification seemed right. I may revisit that.
+
+The resulting file, 311-codebook-request-types-revised.csv, includes fields for the original data from both sources so you can see what I did. In cases where it wasn't clear where a request type belonged, or where there was no department given for the referral, I coded it as "Unknown"
+
+
+```{r load new categoy data, echo=F, warning=F}
+
+categories <- read_csv('raw_data/311-codebook-request-types-revised.csv')
+# trim to the columns needed in the join to the data_311 table
+categories <- categories %>%
+  select(request_type, category)
+
+```
+
+
+Join the categories to 311 data
+```{r}
+
+data_311 <- left_join(data_311,categories, by='request_type')
+
+
+```
+
+### Prepare for mapping
+
+Change x and y to lat and lon
+
+```{r}
+data_311 <- data_311 %>%
+  rename(lon = x, lat = y)
+
+```
+
+
+# Data analysis
+
+## Take a look at the data.
+
+```{r}
+summary(data_311)
+```
+
+Observations:
+Except for created_on, there is no continuous data. Everything else is categorical. Consequently, the analysis will consist mainly of counts.
+
+Let's start by getting a big-picture look at the request categories and origin.
+
+
+```{r}
+data_311 %>%
+  group_by(category) %>%
+  summarise(requests=n()) %>%
+  arrange(desc(requests)) %>%
+  mutate(pct_total = round(requests/sum(requests),digits=3)) %>%
+  slice(1:10)
+
+
+```
+
+The Road/Street Issues category makes up about 42 percent of the calls.The next two are Neighborhood issues, which make up about 10 percent and Garbage and Litter Issues which make up 9 percent.
+
+What's the most frequent request_type, keeping in mind that there are some inconsistencies in the request_type coding.
+
+```{r}
+data_311 %>%
+  group_by(request_type) %>%
+  summarize(requests = n()) %>%
+  mutate(pct_total = round(requests/sum(requests),digits=3) * 100) %>%
+  arrange(desc(requests)) %>%
+  slice(1:10)
+
+
+```
+
+Potholes make up 22 percent while weeds/debri and litter, combined, would make up about 13 percent. Snow/ice removal makes up about 5 percent.
+
+How doe the 311 requests come in?
+
+
+```{r}
+data_311 %>%
+  group_by(request_origin) %>%
+  summarize(requests = n()) %>%
+  mutate(pct_total = round(requests/sum(requests),digits=3) * 100) %>%
+  arrange(desc(requests)) %>%
+  slice(1:10)
+
+```
+
+No real surprises there. About 65 percent are phone calls and another 19 percent come from the webiste. Looks like apps and Twitter make up the rest.
+
+For daily calls, what are the maximum, minimum, mean and median?
+
+
+```{r dailies}
+
+dailies <- data_311 %>%
+  group_by('year' = year(created_on), 'month' = month(created_on), 'day'=day(created_on)) %>%
+  summarize(requests=n())
+
+max_requests=max(dailies$requests)
+min_requests=min(dailies$requests)
+average_requests=mean(dailies$requests)
+median_requests=median(dailies$requests)
+
+rm(dailies)
+
+```
+
+Largest number of requests on any day was `r max_requests`.
+Smallest number was `r min_requests`.
+Average number was `r average_requests`.
+Median number was `r median_requests`.
+
+
+
+Let's look at time-based counts.
+
+How do the number of requests vary by year? month? Day of the Week? Hour?
+
+By year
+```{r}
+data_311 %>%
+  group_by('year' = year(created_on)) %>%
+  summarize(requests=n())
+
+```
+
+Given the limited range (two partial years, two full years), there's not enough data to do much of an annual analsis other than to note that the volume of calls seems to be increasing and will likely exceed 105,000 this year.
+
+## Do some graphs
+
+For looking at requests by month, use a graph instead of a table
+
+```{r}
+
+data_311 %>%
+  group_by('year' = year(created_on), 'month' = month(created_on)) %>%
+  summarize(requests=n()) %>%
+  ggplot(aes(x=paste0(year,'-',str_pad(month,2,pad='0')),y=requests)) +
+  geom_col(color='blue',fill='blue',width=.8) +
+  expand_limits(y=0) +
+  theme(axis.text.x = element_text(angle = 90,hjust=1,vjust=0.5),
+        plot.title = element_text(hjust=0.5),
+        panel.grid = element_line(color='transparent')) +
+  labs(title = 'Number of 311 Requests by Year and Month',
+       x='Year-Month', y='Requests')
+
+```
+
+Observations:
+There's a clear dip in requests at the end of the year. Could this be because the main types of requests (potholes, snow removal, weeds) are rarely an issue during this time of year in Pittsburgh?
+
+Save this to a separate file.
+
+```{r, echo=F,message=F}
+
+ggsave('visuals/req_by_month.png')
+
+
+```
+
+
+
+One intriguing thing is the spike in Feburary 2018. What drove that?
+
+```{r feb2018}
+feb_18 <- data_311 %>%
+  filter(year(created_on)==2018, month(created_on)==2)
+
+feb_18 %>%
+  group_by (request_type) %>%
+  summarize(counts=n()) %>%
+  arrange(desc(counts)) %>%
+  slice(1:10)
+```
+
+So Pittsburgh had a lot of 311 calls about potholes and snow/ice removal in February 2018. Let's look at just those two request types over time.
+
+```{r}
+
+data_311 %>%
+  filter(request_type %in% c('potholes','snow/ice removal')) %>%
+  group_by(year=year(created_on), month=month(created_on),request_type) %>%
+  summarize(requests = n()) %>%
+  ggplot(aes(x=paste0(year,'-',str_pad(month,2,pad='0')),y=requests)) +
+  geom_col(color='blue',fill='blue',width=0.8) +
+  theme(axis.text.x = element_text(angle = 90,hjust=1,vjust=0.5),
+        plot.title = element_text(hjust=0.5)) +
+  labs(title = 'Number of pothole and snow removal requests by Year and Month',
+       x='Year-Month', y='Requests') +
+  facet_wrap(~request_type,nrow=2)
+```
+
+
+```{r, message=F, results='hide',echo=F}
+
+ggsave('visuals/pothole_snow.png')
+
+```
+
+ggsave('visuals/pothole_snow.png')
+
+Which hour sees the most requests?
+
+```{r}
+
+requests_by_hour <- data_311 %>%
+  group_by(hour=hour(created_on)) %>%
+  summarize(requests = n()) %>%
+  arrange(desc(requests))
+
+plot(requests_by_hour)
+```
+
+## Make some maps
+
+```{r add libraries}
+# additional libraries
+library(leaflet)
+library(ggplot2)
+library(sf)
+library(leaflet.extras)
+
+
+```
+
+```{r add shapefile}
+
+map_file <- 'raw_data/Neighborhoods_.shp'
+neighborhood_map <- st_read(map_file)
+
+```
+
+There are too many data points to plot data_311 directly. So aggregate some data.
+
+```{r}
+neighborhood_request_count <- data_311 %>%
+  group_by(neighborhood) %>%
+  summarize(requests = n())
+
+
+```
+
+Now put the data together with the shapefile
+
+```{r}
+
+data_311_map <- left_join(neighborhood_map,neighborhood_request_count,by=c('hood'='neighborhood'))
+
+
+```
+
+Map it.
+
+```{r}
+
+ggplot(data_311_map) +
+  geom_sf(aes(fill=requests)) +
+  scale_fill_distiller(palette="Reds",direction=1, name="311 Requests") +
+  labs(title="311 Calls by Pittsburgh Neighborhood",
+       caption="Source: Western PA Regional Data Center") +
+  theme_void() +
+  theme(panel.grid.major = element_line(colour = 'transparent'))
+
+```
+
+```{r}
+ggsave('visuals/static_map.png')
+
+```
+
+Kind of interesting, but would be more interesting to have it as an interactive map.
+
+```{r}
+popup_sb <- paste0(data_311_map$hood, " 311 calls: ", as.character(data_311_map$requests))
+
+pal_sb <- colorNumeric("Reds", domain=data_311_map$requests)
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  setView(-80, 40.44, zoom=12) %>%
+  addPolygons(data=data_311_map,
+              fillColor= ~pal_sb(data_311_map$requests),
+              fillOpacity=0.9,
+              weight=0.2,
+              smoothFactor = 0.2,
+              highlightOptions = highlightOptions(
+                weight=5,
+                color= "#666",
+                fillOpacity = 0.7,
+                bringToFront = TRUE
+              ),
+              label=popup_sb,
+              labelOptions = labelOptions(
+                style = list("font-weight" = "normal", padding = "3px 8px"),
+                textsize = "15px",
+                direction = "auto")
+              ) %>%
+  addLegend(pal = pal_sb, 
+            values = data_311_map$requests, 
+            position = "bottomright", 
+            title = "311 calls by Neighborhood")
+
+```
+

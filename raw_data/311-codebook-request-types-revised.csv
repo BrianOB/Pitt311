@@ -1,0 +1,347 @@
+request_type,issue,department_data_311,department_categories,requests,category_categories,category,department
+911 perfomance,NA,911,,10,,Unknown,911
+abandoned vehicle,NA,Police - AVU,,192,,Parking,Police - AVU
+abandoned vehicle (parked on street),abandoned vehicle (parked on street),Police - AVU,Police - AVU,6317,Parking,Parking,Police - AVU
+accessibility construction issue,accessibility construction issue,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",39,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+alarm permit,alarm permit,Finance,Finance,11,Permits,Permits,Finance
+americans with disabilities,americans with disabilities,City Planning - Disabilities,City Planning - Disabilities,67,Accessibility,Accessibility,City Planning - Disabilities
+amusement tax,amusement tax,Finance,Finance,1,Taxes,Taxes,Finance
+animal waste,animal waste,Animal Care & Control,Animal Care & Control,416,Animal Issues,Animal Issues,Animal Care & Control
+application request,NA,311,,2,,Unknown,311
+barking dog,barking dog,Animal Care & Control,Animal Care & Control,421,Animal Issues,Animal Issues,Animal Care & Control
+barricades,barricades,DPW - Street Maintenance,DPW - Street Maintenance,435,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+basketball hoop,basketball hoop,DOMI - Permits,DPW - Permits,80,Road/Street Issues,Road/Street Issues,DPW - Permits
+benefits,benefits,PCSC,Human Resources and Civil Service Commission,1,Personnel (City),Personnel (City),Human Resources and Civil Service Commission
+bike lane bollard,bike lane bollard,DPW - Construction Division,DPW - Construction Division,142,Pedestrian/Bicycle Concerns,Pedestrian/Bicycle Concerns,DPW - Construction Division
+bike rack request,NA,City Planning - Bicycles/Pedestrian traffic,,6,,Pedestrian/Bicycle Concerns,City Planning - Bicycles/Pedestrian traffic
+bike trail maintenance,bike trail maintenance,,DPW - Street Maintenance,NA,Pedestrian/Bicycle Concerns,Pedestrian/Bicycle Concerns,DPW - Street Maintenance
+billing,billing,Finance,Finance,3,Business Issues,Business Issues,Finance
+board up (pli referral to dpw),NA,DPW - Construction Division,,460,,Neighborhood Issues,DPW - Construction Division
+boat/trailer on street,boat/trailer on street,Police - Zones 1-6,Police - Zones 1-6,301,Parking,Parking,Police - Zones 1-6
+bollard repair/maintenance,bollard repair/maintenance,DPW - Construction Division,DPW - Construction Division,74,Construction Issues,Construction Issues,DPW - Construction Division
+brick/block or concrete slab repair,brick/block or concrete slab repair,DPW - Construction Division,DPW - Construction Division,368,Road/Street Issues,Road/Street Issues,DPW - Construction Division
+bridge maintenance,bridge maintenance,DOMI - Structures,DPW - Street Maintenance,76,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+bridge maintenance,bridge maintenance,DOMIStructures,DPW - Street Maintenance,1,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+broken sidewalk,broken sidewalk,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",1675,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+building (residential)/do not use,NA,311,,101,,Unknown,311
+building benchmark ordinance,NA,City Planning,,1,,Business Issues,City Planning
+building maintenance,building maintenance,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",11194,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+building or property maintenance,NA,,,83,,Building Maintenance,Unknown
+building violation (residential)/do not use,NA,"Permits, Licenses and Inspections",,40,,Building Maintenance,"Permits, Licenses and Inspections"
+building without a permit,building without a permit,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",3369,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+bulk,bulk,DPW - Refuse,DPW - Refuse,331,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+bus shelter,bus shelter,Lamar Advertising,311,63,Construction Issues,Construction Issues,311
+bus stop request,bus stop request,DOMI - Traffic,DPW - Transportation & Engineering,12,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+business accessibility,business accessibility,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",13,Business Issues,Business Issues,"Permits, Licenses and Inspections"
+cable bureau/programming,cable bureau/programming,Innovation & Performance,Innovation & Performance,16,"Communications (Cable, Website)","Communications (Cable, Website)",Innovation & Performance
+catch basin clogged,catch basin clogged,,Pittsburgh Water & Sewer Authority,NA,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+"catch basin, clogged",NA,Pittsburgh Water and Sewer Authority,,2326,,Utility Issues,Pittsburgh Water and Sewer Authority
+catch basins,NA,Pittsburgh Water and Sewer Authority,,1,,Utility Issues,Pittsburgh Water and Sewer Authority
+check conditions,check conditions,Animal Care & Control,Animal Care & Control,302,Animal Issues,Animal Issues,Animal Care & Control
+christmas tree,NA,DPW - Forestry Division,,43,,Garbage and Litter Issues,DPW - Forestry Division
+cited root prunes,NA,DPW - Forestry Division,,32,,Tree Issues,DPW - Forestry Division
+citiparks programs,citiparks programs,Parks & Recs-Programs,Parks & Recs-Programs,103,Ask Us/General FAQs,Ask Us/General FAQs,Parks & Recs-Programs
+city clerk,city clerk,City Clerks Office,City Clerks Office,6,Ask Us/General FAQs,Ask Us/General FAQs,City Clerks Office
+city council,city council,311,311,20,Ask Us/General FAQs,Ask Us/General FAQs,311
+city facility,city facility,DPW - Facilities,DPW - Facilities,224,Accessibility,Accessibility,DPW - Facilities
+city facility,city facility,DPW - Facilities,DPW - Facilities,224,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Facilities
+city park,city park,DPW - Park Maintenance,DPW - Street Maintenance,57,Weeds/Debris,Weeds/Debris,DPW - Street Maintenance
+city source (cdbg),NA,"City Source Associates, Inc.",,3062,,Neighborhood Issues,"City Source Associates, Inc."
+"city steps, need cleared","city steps, need cleared",DPW - Street Maintenance,DPW - Street Maintenance,841,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Street Maintenance
+"city steps, need repaired","city steps, need repaired",DOMI - Streets,DPW - Construction Division,655,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Construction Division
+city website,city website,Innovation & Performance,Innovation & Performance,38,"Communications (Cable, Website)","Communications (Cable, Website)",Innovation & Performance
+claim form (law),NA,311,,133,,Unknown,311
+collapsed catch basin,collapsed catch basin,Pittsburgh Water and Sewer Authority,Pittsburgh Water & Sewer Authority,1134,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+commercial refuse/dumpsters,commercial refuse/dumpsters,DPW - Refuse,DPW - Refuse,603,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+concern,NA,311,,1,,Unknown,311
+construction site maintenance,construction site maintenance,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",421,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+couch on porch,couch on porch,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",259,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+county maintenance,NA,,,101,,Unknown,Unknown
+"court, basketball or tennis","court, basketball or tennis",DPW - Park Maintenance,DPW - Park Maintenance,181,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Park Maintenance
+"court, basketball or tennis","court, basketball or tennis",DPW - Park Maintenance,DPW - Park Maintenance,181,Parks Issues,Parks Issues,DPW - Park Maintenance
+crossing guards,crossing guards,School Guards,School Guards,178,Public Safety,Public Safety,School Guards
+curb /angle iron/metal exposed,curb /angle iron/metal exposed,DPW - Street Maintenance,DPW - Street Maintenance,373,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+curb /broken/deteriorated,curb /broken/deteriorated,DOMI - Permits,DPW - Permits,565,Road/Street Issues,Road/Street Issues,DPW - Permits
+curb cuts,curb cuts,DOMI - Permits,DPW - Permits,69,Road/Street Issues,Road/Street Issues,DPW - Permits
+curb paint,curb paint,DOMI - Traffic,DPW - Traffic,292,Road/Street Issues,Road/Street Issues,DPW - Traffic
+curb paint application,NA,311,,36,,Road/Street Issues,311
+curb/request for asphalt windrow,curb/request for asphalt windrow,DPW - Street Maintenance,DPW - Street Maintenance,1093,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+dead animal,dead animal,Animal Care & Control,Animal Care & Control,2211,Animal Issues,Animal Issues,Animal Care & Control
+dead tree (3tb),NA,DPW - Construction Division,,329,,Tree Issues,DPW - Construction Division
+dead tree (public property),dead tree (public property),DPW - Forestry Division,DPW - Forestry Division,1177,Tree Issues,Tree Issues,DPW - Forestry Division
+demolition,demolition,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",220,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+discrimination/unfair practices,NA,,,34,,Unknown,Unknown
+do not use (vacant and open building),NA,311,,206,,Neighborhood Issues,311
+dog license,dog license,Finance,Finance,23,Animal Issues,Animal Issues,Finance
+drainage/leak,drainage/leak,DPW - Street Maintenance,DPW - Street Maintenance,1279,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+drug enforcement,drug enforcement,Police - Zones 1-6,Police - Zones 1-6,1410,Public Safety,Public Safety,Police - Zones 1-6
+dumping (private property),dumping (private property),,"Permits, Licenses and Inspections",NA,Weeds/Debris,Weeds/Debris,"Permits, Licenses and Inspections"
+dumping (private property)/do not use,NA,"Permits, Licenses and Inspections",,38,,Neighborhood Issues,"Permits, Licenses and Inspections"
+"dumping, private property","dumping, private property","Permits, Licenses and Inspections","Permits, Licenses and Inspections",523,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+dumpster,dumpster,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",122,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+dumpster,dumpster,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",122,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+dumpster (on street),dumpster (on street),DOMI - Permits,DPW - Permits,722,Permits,Permits,DPW - Permits
+early set out,early set out,DPW - Refuse,DPW - Refuse,1513,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+early trash set out,NA,DPW - Refuse,,61,,Garbage and Litter Issues,DPW - Refuse
+earned income tax,earned income tax,Finance,Finance,7,Business Issues,Business Issues,Finance
+earned income tax,earned income tax,Finance,Finance,7,Taxes,Taxes,Finance
+econoffice of municipal investigationsc development,econoffice of municipal investigationsc development,,Mayor's Office - Community Affairs,NA,Ask Us/General FAQs,Ask Us/General FAQs,Mayor's Office - Community Affairs
+economic development,NA,Mayor's Office - Community Affairs,,10,,Ask Us/General FAQs,Mayor's Office - Community Affairs
+electrical violation,electrical violation,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",195,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+emergency medical services procedures,emergency medical services procedures,,Emergency Medical Services,NA,Public Safety,Public Safety,Emergency Medical Services
+employment/hiring,employment/hiring,PCSC,Human Resources and Civil Service Commission,5,Personnel (City),Personnel (City),Human Resources and Civil Service Commission
+ems billing,NA,,,2,,Public Safety,Unknown
+ems procedures,NA,EMS - Administration,,21,,Public Safety,EMS - Administration
+emt,emt,Finance,Finance,1,Taxes,Taxes,Finance
+environmental services - do not use/test,NA,,,39,,Unknown,Unknown
+excessive noise/disturbances,excessive noise/disturbances,Police - Zones 1-6,Police - Zones 1-6,1487,Neighborhood Issues,Neighborhood Issues,Police - Zones 1-6
+fence,fence,DPW - Construction Division,DPW - Construction Division,134,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Construction Division
+fence maintenance,fence maintenance,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",211,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+field,field,DOMI - Permits,DPW - Park Maintenance,22,Parks Issues,Parks Issues,DPW - Park Maintenance
+field,field,DOMI - Permits,DPW - Permits,22,Permits,Permits,DPW - Permits
+field,field,DPW - Park Maintenance,DPW - Park Maintenance,479,Parks Issues,Parks Issues,DPW - Park Maintenance
+field,field,DPW - Park Maintenance,DPW - Permits,479,Permits,Permits,DPW - Permits
+finance department,finance department,Finance,Finance,32,Ask Us/General FAQs,Ask Us/General FAQs,Finance
+fire department,fire department,Fire Bureau,Fire Bureau,45,Ask Us/General FAQs,Ask Us/General FAQs,Fire Bureau
+fire lane,fire lane,Fire Bureau,Fire Bureau,41,Public Safety,Public Safety,Fire Bureau
+fire prevention,fire prevention,Fire Bureau,Fire Bureau,98,Public Safety,Public Safety,Fire Bureau
+fire safety system issue,NA,,,152,,Building Maintenance,Unknown
+fire safety system not working,NA,"Permits, Licenses and Inspections",,1675,,Building Maintenance,"Permits, Licenses and Inspections"
+fire safety sytem not working,fire safety sytem not working,,"Permits, Licenses and Inspections",NA,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+food safety complaints,NA,ACHD - Food Safety,,4,,Unknown,ACHD - Food Safety
+gang activity,gang activity,Police - Zones 1-6,Police - Zones 1-6,76,Public Safety,Public Safety,Police - Zones 1-6
+graffiti,NA,Police - Zones 1-6,,62,,Graffiti Issues,Police - Zones 1-6
+"graffiti, documentation","graffiti, documentation",Police - Zones 1-6,Police - Zones 1-6,1268,Graffiti Issues,Graffiti Issues,Police - Zones 1-6
+"graffiti, owner refused dpw removal",NA,,,5,,Graffiti Issues,Unknown
+"graffiti, removal","graffiti, removal",DPW - 2nd Division,DPW - 2nd Division,668,Graffiti Issues,Graffiti Issues,DPW - 2nd Division
+guide rail,guide rail,DPW - Construction Division,DPW - Construction Division,268,Road/Street Issues,Road/Street Issues,DPW - Construction Division
+handicap parking signs,NA,DOMI - Traffic,,382,,Traffic and Street Sign Issues,DOMI - Traffic
+handicap ramp request,handicap ramp request,,DPW - Transportation & Engineering,NA,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+"handicap ramp, repair","handicap ramp, repair",DOMI - Streets,DPW - Construction Division,154,Accessibility,Accessibility,DPW - Construction Division
+"handicap ramp, request for installation","handicap ramp, request for installation",DOMI - Streets,DPW - Transportation & Engineering,130,Accessibility,Accessibility,DPW - Transportation & Engineering
+handicapped parking application,NA,311,,162,,Parking,311
+handicapped parking sign request,handicapped parking sign request,,311,1,Parking,Parking,311
+"handicapped parking space, residential request","handicapped parking space, residential request",,311,NA,Traffic and Street Sign Issues,Traffic and Street Sign Issues,311
+health hazard,NA,ACHD - Housing,,144,,Public Safety,ACHD - Housing
+homeless,homeless,Mayor's Office - Community Affairs,Police - Zones 1-6,312,Public Safety,Public Safety,Police - Zones 1-6
+homestead act/senior tax relief,homestead act/senior tax relief,Finance,Finance,2,Business Issues,Business Issues,Finance
+hvac not functioning,hvac not functioning,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",58,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+hydrant,hydrant,Pittsburgh Water and Sewer Authority,Pittsburgh Water & Sewer Authority,673,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+hydrant - fire admin,NA,Fire Bureau,,22,,Public Safety,Fire Bureau
+illegal dumping,illegal dumping,DOMI - Permits,DPW - Permits,2071,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Permits
+illegal parking,illegal parking,Police - Zones 1-6,Police - Zones 1-6,4453,Parking,Parking,Police - Zones 1-6
+improper work in a historic district,improper work in a historic district,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",92,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+junk vehicles,junk vehicles,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",923,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+knowledge base articles,NA,,,5,,Unknown,Unknown
+landslide,landslide,DOMI - Structures,DPW - Transportation & Engineering,403,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+landslide,landslide,DPW - Transportation & Engineering,DPW - Transportation & Engineering,1,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+late set out,late set out,DPW - Refuse,DPW - Refuse,97,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+lead testing kit,NA,Pittsburgh Water and Sewer Authority,,178,,Utility Issues,Pittsburgh Water and Sewer Authority
+leak,leak,311,311/Pittsburgh Water & Sewer Authority,159,Building Maintenance,Building Maintenance,311/Pittsburgh Water & Sewer Authority
+leak,leak,311,Pittsburgh Water & Sewer Authority,159,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+leak,leak,Pittsburgh Water and Sewer Authority,311/Pittsburgh Water & Sewer Authority,2161,Building Maintenance,Building Maintenance,311/Pittsburgh Water & Sewer Authority
+leak,leak,Pittsburgh Water and Sewer Authority,Pittsburgh Water & Sewer Authority,2161,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+"leaves, grass or other yard debris","leaves, grass or other yard debris",DPW - Refuse,DPW - Refuse,256,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+leaves/street cleaning,leaves/street cleaning,DPW - Street Maintenance,DPW - Street Maintenance,845,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+lights,lights,DPW - Park Maintenance,DPW - Park Maintenance,256,Parks Issues,Parks Issues,DPW - Park Maintenance
+line striping/curb painting (maintenance issue),line striping/curb painting (maintenance issue),,DPW - Traffic,NA,Road/Street Issues,Road/Street Issues,DPW - Traffic
+line striping/curb painting (new request),line striping/curb painting (new request),,DPW - Transportation & Engineering,NA,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+litter,litter,DPW - Park Maintenance,DPW - Street Maintenance,184,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Street Maintenance
+litter,litter,DPW - Park Maintenance,DPW - Park Maintenance,184,Parks Issues,Parks Issues,DPW - Park Maintenance
+litter,litter,DPW - Street Maintenance,DPW - Street Maintenance,5226,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Street Maintenance
+litter,litter,DPW - Street Maintenance,DPW - Park Maintenance,5226,Parks Issues,Parks Issues,DPW - Park Maintenance
+litter can,litter can,DPW - Park Maintenance,DPW - Park Maintenance,124,Parks Issues,Parks Issues,DPW - Park Maintenance
+litter can,litter can,DPW - Park Maintenance,DPW - Street Maintenance,124,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+litter can,litter can,DPW - Street Maintenance,DPW - Park Maintenance,50,Parks Issues,Parks Issues,DPW - Park Maintenance
+litter can,litter can,DPW - Street Maintenance,DPW - Street Maintenance,50,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+"litter can, public","litter can, public",DPW - Street Maintenance,DPW - Street Maintenance,1506,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Street Maintenance
+loading zone application,NA,,,6,,Traffic and Street Sign Issues,Unknown
+"loading zone, request",NA,311,,25,,Traffic and Street Sign Issues,311
+loose dog(s),loose dog(s),Animal Care & Control,Animal Care & Control,277,Animal Issues,Animal Issues,Animal Care & Control
+maintenance issue,NA,DOMI - TrafficShop,,986,,Road/Street Issues,DOMI - TrafficShop
+manhole cover,manhole cover,DOMI - Permits,DPW - Permits,321,Utility Issues,Utility Issues,DPW - Permits
+"manhole covers, pittsburgh water & sewer authority (pwsa)","manhole covers, pittsburgh water & sewer authority (pwsa)",,Pittsburgh Water & Sewer Authority,NA,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+"manhole covers, pwsa",NA,Pittsburgh Water and Sewer Authority,,520,,Road/Street Issues,Pittsburgh Water and Sewer Authority
+mayor's office,mayor's office,311,Mayor's Office - Community Affairs,532,Ask Us/General FAQs,Ask Us/General FAQs,Mayor's Office - Community Affairs
+medical exemption - tote,NA,DPW - Refuse,,27,,Unknown,DPW - Refuse
+meter (broken),meter (broken),Parking Authority,Parking Authority,77,Parking,Parking,Parking Authority
+meter (water),meter (water),,Pittsburgh Water & Sewer Authority,37,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+missed blue bag,missed blue bag,DPW - Refuse,DPW - Refuse,1187,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+missed pick up,missed pick up,DPW - Refuse,DPW - Refuse,4997,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+mobile phone app,mobile phone app,311,311,8,"Communications (Cable, Website)","Communications (Cable, Website)",311
+need potable water,NA,Pittsburgh Water and Sewer Authority,,848,,Utility Issues,Pittsburgh Water and Sewer Authority
+neighborhood issues,NA,,,95,,Neighborhood Issues,Unknown
+new crosswalk request,new crosswalk request,DOMI - Traffic,DPW - Transportation & Engineering,338,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+new request,NA,DOMI - Traffic,,394,,Traffic and Street Sign Issues,DOMI - Traffic
+no dumping sign,NA,,,4,,Garbage and Litter Issues,Unknown
+no parking variance,no parking variance,DOMI - Permits,DPW - Permits,144,Parking,Parking,DPW - Permits
+no parking variance,no parking variance,DPW - Permits,DPW - Permits,12,Parking,Parking,DPW - Permits
+no water,no water,Pittsburgh Water and Sewer Authority,Pittsburgh Water & Sewer Authority,142,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+noise,noise,Police - Zones 1-6,Police - Zones 1-6,255,Public Safety,Public Safety,Police - Zones 1-6
+nuisance bar,NA,Police - Narcotics,,74,,Public Safety,Police - Narcotics
+off leash exercise area,off leash exercise area,Animal Care & Control,Animal Care & Control,19,Animal Issues,Animal Issues,Animal Care & Control
+operating without a license,operating without a license,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",519,Business Issues,Business Issues,"Permits, Licenses and Inspections"
+other,NA,311,,144,,Unknown,311
+other (please describe),other (please describe),Animal Care & Control,Animal Care & Control,341,Animal Issues,Animal Issues,Animal Care & Control
+overcrowding,overcrowding,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",157,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+overgrowth,overgrowth,DPW - Street Maintenance,DPW - Park Maintenance,4277,Parks Issues,Parks Issues,DPW - Park Maintenance
+overgrowth,overgrowth,DPW - Street Maintenance,DPW - Street Maintenance,4277,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+"overgrowth, parks",NA,DPW - Park Maintenance,,319,,Parks Issues,DPW - Park Maintenance
+panhandling,panhandling,Police - Zones 1-6,Police - Zones 1-6,83,Public Safety,Public Safety,Police - Zones 1-6
+paper street,NA,DOMI - Permits,,6,,Road/Street Issues,DOMI - Permits
+park shelter,park shelter,DOMI - Permits,DPW - Permits,21,Permits,Permits,DPW - Permits
+parking authority,parking authority,Parking Authority,Parking Authority,550,Parking,Parking,Parking Authority
+parking garage,parking garage,Parking Authority,Parking Authority,21,Parking,Parking,Parking Authority
+parking lot,parking lot,Finance,Finance,5,Business Issues,Business Issues,Finance
+"parking lot, ppa parking lot","parking lot, ppa parking lot",,PPA,NA,Business Issues,Business Issues,PPA
+parking meter request,parking meter request,DOMI - Traffic,DPW - Transportation & Engineering,21,Parking,Parking,DPW - Transportation & Engineering
+parking tax,parking tax,,Finance,NA,Taxes,Taxes,Finance
+parks trails,parks trails,DPW - Park Maintenance,DPW - Park Maintenance,225,Parks Issues,Parks Issues,DPW - Park Maintenance
+pat,NA,Port Authority Transit,,96,,Unknown,Port Authority Transit
+patrol,patrol,Police - Zones 1-6,Police - Zones 1-6,1744,Public Safety,Public Safety,Police - Zones 1-6
+paving concern/problem,paving concern/problem,DOMI - Asphalt,DPW - Asphalt,1423,Road/Street Issues,Road/Street Issues,DPW - Asphalt
+paving concern/problem,paving concern/problem,DPW - Asphalt,DPW - Asphalt,1,Road/Street Issues,Road/Street Issues,DPW - Asphalt
+paving request,paving request,DOMI - Asphalt,DPW - Asphalt,3920,Road/Street Issues,Road/Street Issues,DPW - Asphalt
+payroll expense tax,payroll expense tax,Finance,Finance,1,Taxes,Taxes,Finance
+pedestrian signal maintenance,pedestrian signal maintenance,DOMI - TrafficShop,DPW - Traffic,180,Road/Street Issues,Road/Street Issues,DPW - Traffic
+pedestrian signal request,pedestrian signal request,DOMI - Traffic,DPW - Transportation & Engineering,97,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+pedestrian/bicycle concerns,pedestrian/bicycle concerns,DOMI - Traffic,311,424,Pedestrian/Bicycle Concerns,Pedestrian/Bicycle Concerns,311
+pedestrian/bicycle concerns,pedestrian/bicycle concerns,,311,1,Pedestrian/Bicycle Concerns,Pedestrian/Bicycle Concerns,311
+performance,performance,OMI,Office of Municipal Investigations,138,Personnel (City),Personnel (City),Office of Municipal Investigations
+permit parking (request for rpp zone),NA,City Planning - Residential Permit Parking Program,,32,,Parking,City Planning - Residential Permit Parking Program
+permit parking (residential parking permit),permit parking (residential parking permit),Parking Authority,Parking Authority,484,Permits,Permits,Parking Authority
+permits,NA,311,,3,,Ask Us/General FAQs,311
+"permits, licenses and inspections","permits, licenses and inspections","Permits, Licenses and Inspections","Permits, Licenses and Inspections",196,Ask Us/General FAQs,Ask Us/General FAQs,"Permits, Licenses and Inspections"
+pittsburgh water & sewer authority (pwsa) billing or shut off,pittsburgh water & sewer authority (pwsa) billing or shut off,,Pittsburgh Water & Sewer Authority,NA,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+planning issues,planning issues,,311,NA,Neighborhood Issues,Neighborhood Issues,311
+planting,planting,DPW - Forestry Division,DPW - Forestry Division,188,Tree Issues,Tree Issues,DPW - Forestry Division
+playground,playground,DPW - Park Maintenance,DPW - Park Maintenance,623,Parks Issues,Parks Issues,DPW - Park Maintenance
+police department,police department,311,311,128,Ask Us/General FAQs,Ask Us/General FAQs,311
+port a potty,port a potty,DPW - Street Maintenance,DPW - Street Maintenance,198,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+potholes,potholes,DOMI - Streets,DPW - Street Maintenance,719,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+potholes,potholes,DPW - Street Maintenance,DPW - Street Maintenance,37290,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+potholes-test,NA,311,,23,,Road/Street Issues,311
+ppa parking lot,NA,Parking Authority,,14,,Parking,Parking Authority
+procedure,procedure,PCSC,Human Resources and Civil Service Commission,14,Personnel (City),Personnel (City),Human Resources and Civil Service Commission
+program,program,Parks & Recs-Programs,Parks & Recs-Programs,75,Parks Issues,Parks Issues,Parks & Recs-Programs
+property purchase,property purchase,Finance,Finance,2,Taxes,Taxes,Finance
+prostitution,NA,,,71,,Public Safety,Unknown
+pruning (city tree),pruning (city tree),DPW - Forestry Division,DPW - Forestry Division,3530,Tree Issues,Tree Issues,DPW - Forestry Division
+public right of way,public right of way,DPW - Street Maintenance,DPW - Street Maintenance,1213,Weeds/Debris,Weeds/Debris,DPW - Street Maintenance
+public works department,public works department,DPW - Administration,DPW - Administration,266,Ask Us/General FAQs,Ask Us/General FAQs,DPW - Administration
+pwsa billing or shut off,NA,Pittsburgh Water and Sewer Authority,,370,,Utility Issues,Pittsburgh Water and Sewer Authority
+question,NA,311,,352,,Ask Us/General FAQs,311
+real estate tax,real estate tax,Finance,Finance,72,Business Issues,Business Issues,Finance
+real estate tax,real estate tax,Finance,Finance,72,Taxes,Taxes,Finance
+recycling,recycling,DPW - Refuse,DPW - Refuse,204,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+referral,NA,311,,292,,Unknown,311
+refuse violations,NA,DPW - Refuse,,6789,,Garbage and Litter Issues,DPW - Refuse
+replace/repair a sign,replace/repair a sign,DOMI - TrafficShop,DPW - Traffic,5248,Road/Street Issues,Road/Street Issues,DPW - Traffic
+replace/repair a sign,replace/repair a sign,DPW - Traffic,DPW - Traffic,2,Road/Street Issues,Road/Street Issues,DPW - Traffic
+replace/repair sign,NA,DOMI - TrafficShop,,201,,Road/Street Issues,DOMI - TrafficShop
+request new sign,request new sign,DOMI - Traffic,DPW - Transportation & Engineering,2658,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+request new sign,request new sign,,DPW - Transportation & Engineering,54,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+residency,residency,OMI,Office of Municipal Investigations,8,Personnel (City),Personnel (City),Office of Municipal Investigations
+retaining wall,retaining wall,DPW - Construction Division,DPW - Construction Division,85,Road/Street Issues,Road/Street Issues,DPW - Construction Division
+retaining wall (public property),retaining wall (public property),DOMI - Structures,DPW - Construction Division,193,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Construction Division
+retaining wall (public property),retaining wall (public property),DOMIStructures,DPW - Construction Division,1,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Construction Division
+retaining wall maintenance,retaining wall maintenance,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",538,Building Maintenance,Building Maintenance,"Permits, Licenses and Inspections"
+road,road,DOMI - Permits,DPW - Permits,356,Construction Issues,Construction Issues,DPW - Permits
+rodent control,rodent control,Animal Care & Control,Animal Care & Control,2230,Animal Issues,Animal Issues,Animal Care & Control
+root prune,NA,DPW - Forestry Division,,694,,Tree Issues,DPW - Forestry Division
+root prune (city tree buckling private sidewalk),root prune (city tree buckling private sidewalk),,DPW - Forestry Division,NA,Tree Issues,Tree Issues,DPW - Forestry Division
+salt box,salt box,DPW - Street Maintenance,DPW - Street Maintenance,163,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+schedule request,schedule request,311,311,255,Garbage and Litter Issues,Garbage and Litter Issues,311
+sewage,NA,311,,51,,Utility Issues,311
+sewers,sewers,Pittsburgh Water and Sewer Authority,Pittsburgh Water & Sewer Authority,375,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+shelters,shelters,DPW - Park Maintenance,DPW - Park Maintenance,50,Parks Issues,Parks Issues,DPW - Park Maintenance
+side yard program,side yard program,311,Finance,2,Taxes,Taxes,Finance
+sidewalk,NA,311,,33,,Pedestrian/Bicycle Concerns,311
+sidewalk (city property),sidewalk (city property),DOMI - Streets,DPW - Construction Division,426,Construction Issues,Construction Issues,DPW - Construction Division
+sidewalk (city property),sidewalk (city property),DPW - Construction Division,DPW - Construction Division,1,Construction Issues,Construction Issues,DPW - Construction Division
+sidewalk closure violation,NA,DOMI - Permits,,40,,Pedestrian/Bicycle Concerns,DOMI - Permits
+sidewalk obstruction,NA,DOMI - Permits,,1796,,Pedestrian/Bicycle Concerns,DOMI - Permits
+"sidewalk, damaged/do not use",NA,311,,44,,Pedestrian/Bicycle Concerns,311
+"sidewalk, lack of snow/ice removal","sidewalk, lack of snow/ice removal",311,311,570,Accessibility,Accessibility,311
+"sidewalk, lack of snow/ice removal","sidewalk, lack of snow/ice removal",DOMI - Permits,311,117,Accessibility,Accessibility,311
+"sidewalk, obstruction","sidewalk, obstruction",,DPW - Permits,NA,Accessibility,Accessibility,DPW - Permits
+"sidewalk, overgrowth/obstruction","sidewalk, overgrowth/obstruction",DOMI - Permits,DPW - Permits,443,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Permits
+sign,sign,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",2436,Business Issues,Business Issues,"Permits, Licenses and Inspections"
+"signs, advertising or political",NA,DPW - Major Dumping,,7,,Garbage and Litter Issues,DPW - Major Dumping
+sinkhole,sinkhole,DPW - Street Maintenance,DPW - Street Maintenance,2321,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+smoke detectors,smoke detectors,Fire Bureau,Fire Bureau,613,Public Safety,Public Safety,Fire Bureau
+snow angel intake,NA,,,258,,Accessibility,Unknown
+snow angel volunteer,NA,311,,25,,Accessibility,311
+snow/ice removal,snow/ice removal,DOMI - Streets,DPW - Street Maintenance,315,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+snow/ice removal,snow/ice removal,DPW - Street Maintenance,DPW - Street Maintenance,9061,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+spay/neuter application,NA,,,10,,Unknown,Unknown
+special events,NA,,,19,,Unknown,Unknown
+special pick up,NA,DPW - Refuse,,130,,Garbage and Litter Issues,DPW - Refuse
+speeding,speeding,Police - Zones 1-6,Police - SDD,761,Public Safety,Public Safety,Police - SDD
+stagnant water,NA,ACHD - Housing,,38,,Public Safety,ACHD - Housing
+stormwater runoff,stormwater runoff,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",319,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+street cleaning/sweeping,street cleaning/sweeping,DPW - Street Maintenance,DPW - Street Maintenance,2325,Road/Street Issues,Road/Street Issues,DPW - Street Maintenance
+street light - increased wattage,street light - increased wattage,DOMI - Permits,DPW - Transportation & Engineering,68,Street Light,Street Light,DPW - Transportation & Engineering
+street light - repair,street light - repair,Allegheny City Electric,Allegheny City Electric,4819,Street Light,Street Light,Allegheny City Electric
+street light - request,street light - request,DOMI - Permits,DPW - Transportation & Engineering,251,Street Light,Street Light,DPW - Transportation & Engineering
+street light repair,NA,Allegheny City Electric,,20,,Street Light,Allegheny City Electric
+street obstruction/closure,street obstruction/closure,DOMI - Permits,DPW - Permits,514,Road/Street Issues,Road/Street Issues,DPW - Permits
+street obstruction/closure,street obstruction/closure,DPW - Permits,DPW - Permits,21,Road/Street Issues,Road/Street Issues,DPW - Permits
+stump grind/removal,stump grind/removal,DPW - Forestry Division,DPW - Forestry Division,177,Tree Issues,Tree Issues,DPW - Forestry Division
+tenant/landlord problemergency medical services,tenant/landlord problemergency medical services,,311,NA,Neighborhood Issues,Neighborhood Issues,311
+tenant/landlord problems,NA,311,,31,,Neighborhood Issues,311
+thank you,thank you,PCSC,Human Resources and Civil Service Commission,16,Personnel (City),Personnel (City),Human Resources and Civil Service Commission
+thank you - 311,thank you - 311,311,311,36,Personnel (City),Personnel (City),311
+thank you - citiparks,NA,,,1,,Personnel (City),Unknown
+thank you - dpw,thank you - dpw,DPW - Administration,DPW - Administration,453,Personnel (City),Personnel (City),DPW - Administration
+thank you - emergency medical services,thank you - emergency medical services,,Emergency Medical Services,NA,Personnel (City),Personnel (City),Emergency Medical Services
+thank you - ems,NA,EMS - Administration,,5,,Personnel (City),EMS - Administration
+thank you - finance,thank you - finance,Finance,Finance,3,Personnel (City),Personnel (City),Finance
+thank you - pittsburgh water & sewer authority (pwsa),thank you - pittsburgh water & sewer authority (pwsa),,Pittsburgh Water & Sewer Authority (PWSA),NA,Personnel (City),Personnel (City),Pittsburgh Water & Sewer Authority (PWSA)
+thank you - pli personnel,NA,,,8,,Personnel (City),Unknown
+thank you - police,thank you - police,Police - Zones 1-6,Police - Zones 1-6,27,Personnel (City),Personnel (City),Police - Zones 1-6
+thank you - pwsa,NA,Pittsburgh Water and Sewer Authority,,11,,Personnel (City),Pittsburgh Water and Sewer Authority
+"ticket, pgh parking authority","ticket, pgh parking authority",Parking Authority,Parking Authority,77,Parking,Parking,Parking Authority
+"ticket, police-issued","ticket, police-issued",Police - Zones 1-6,Police - Zones 1-6,26,Parking,Parking,Police - Zones 1-6
+towed vehicle,towed vehicle,Police - AVU,Police - AVU,28,Parking,Parking,Police - AVU
+traffic,traffic,DOMI - Traffic,Police - Zones 1-6,892,Public Safety,Public Safety,Police - Zones 1-6
+traffic,traffic,DOMI - Traffic,DPW - Transportation & Engineering,892,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+traffic,traffic,DPW - Transportation & Engineering,Police - Zones 1-6,2,Public Safety,Public Safety,Police - Zones 1-6
+traffic,traffic,DPW - Transportation & Engineering,DPW - Transportation & Engineering,2,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+traffic,traffic,Police - Zones 1-6,Police - Zones 1-6,1235,Public Safety,Public Safety,Police - Zones 1-6
+traffic,traffic,Police - Zones 1-6,DPW - Transportation & Engineering,1235,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+traffic calming,NA,DOMI - Traffic,,81,,Traffic and Street Sign Issues,DOMI - Traffic
+"traffic or pedestrian signal, repair","traffic or pedestrian signal, repair",DOMI - TrafficShop,DPW - Traffic,1981,Traffic and Street Sign Issues,Traffic and Street Sign Issues,DPW - Traffic
+"traffic or pedestrian signal, request","traffic or pedestrian signal, request",DOMI - Traffic,DPW - Transportation & Engineering,566,Traffic and Street Sign Issues,Traffic and Street Sign Issues,DPW - Transportation & Engineering
+"traffic or pedestrian signal, request","traffic or pedestrian signal, request",DPW - Transportation & Engineering,DPW - Transportation & Engineering,1,Traffic and Street Sign Issues,Traffic and Street Sign Issues,DPW - Transportation & Engineering
+"traffic or pedestrian signal, request","traffic or pedestrian signal, request",,DPW - Transportation & Engineering,1,Traffic and Street Sign Issues,Traffic and Street Sign Issues,DPW - Transportation & Engineering
+traffic shop,NA,DOMI - TrafficShop,,164,,Traffic and Street Sign Issues,DOMI - TrafficShop
+traffic signal request,traffic signal request,DOMI - Traffic,DPW - Transportation & Engineering,332,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+traffic signal request,traffic signal request,DPW - Transportation & Engineering,DPW - Transportation & Engineering,1,Road/Street Issues,Road/Street Issues,DPW - Transportation & Engineering
+traffic signals surtrac,NA,DOMI - Traffic,,81,,Traffic and Street Sign Issues,DOMI - Traffic
+trail maintenance,NA,DPW - Street Maintenance,,96,,Parks Issues,DPW - Street Maintenance
+tree fallen across road,tree fallen across road,DPW - Street Maintenance,DPW - Street Maintenance,1455,Tree Issues,Tree Issues,DPW - Street Maintenance
+tree fallen across sidewalk,tree fallen across sidewalk,DPW - Street Maintenance,DPW - Street Maintenance,815,Tree Issues,Tree Issues,DPW - Street Maintenance
+tree issues,tree issues,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",601,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+tree removal,tree removal,DPW - Forestry Division,DPW - Forestry Division,1683,Tree Issues,Tree Issues,DPW - Forestry Division
+unpermitted electrical work,unpermitted electrical work,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",891,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+unpermitted fire system work,unpermitted fire system work,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",232,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+unpermitted hvac work,unpermitted hvac work,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",431,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+unpermitted land operations,unpermitted land operations,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",83,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+unpermitted sign construction,unpermitted sign construction,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",78,Construction Issues,Construction Issues,"Permits, Licenses and Inspections"
+ura property,NA,,,345,,Neighborhood Issues,Unknown
+utility cut - other,utility cut - other,DOMI - Permits,DPW - Permits,1115,Road/Street Issues,Road/Street Issues,DPW - Permits
+utility cut - pittsburgh water & sewer authority (pwsa),utility cut - pittsburgh water & sewer authority (pwsa),,Pittsburgh Water & Sewer Authority (PWSA),NA,Road/Street Issues,Road/Street Issues,Pittsburgh Water & Sewer Authority (PWSA)
+utility cut - pwsa,NA,Pittsburgh Water and Sewer Authority,,1127,,Utility Issues,Pittsburgh Water and Sewer Authority
+utility pole,utility pole,DOMI - Permits,DPW - Permits,527,Utility Issues,Utility Issues,DPW - Permits
+vacant building,vacant building,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",3191,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+vacant lot,NA,311,,163,,Neighborhood Issues,311
+violations,violations,,DPW - Refuse,NA,Garbage and Litter Issues,Garbage and Litter Issues,DPW - Refuse
+walkway or trail,walkway or trail,DPW - Street Maintenance,311,102,Accessibility,Accessibility,311
+water main break,water main break,Pittsburgh Water and Sewer Authority,Pittsburgh Water & Sewer Authority,475,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+water pressure,water pressure,Pittsburgh Water and Sewer Authority,Pittsburgh Water & Sewer Authority,63,Utility Issues,Utility Issues,Pittsburgh Water & Sewer Authority
+water/drinking fountains,water/drinking fountains,DPW - Facilities,DPW - Facilities,431,City Facilities and Infrastructure,City Facilities and Infrastructure,DPW - Facilities
+water/drinking fountains,water/drinking fountains,DPW - Facilities,DPW  - Facilities,431,Parks Issues,Parks Issues,DPW  - Facilities
+weeds/debris,weeds/debris,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",22280,Neighborhood Issues,Neighborhood Issues,"Permits, Licenses and Inspections"
+wires,wires,DOMI - Permits,DPW - Permits,863,Utility Issues,Utility Issues,DPW - Permits
+zoning issue,zoning issue,"Permits, Licenses and Inspections","Permits, Licenses and Inspections",1271,Business Issues,Business Issues,"Permits, Licenses and Inspections"
