@@ -1,0 +1,238 @@
+---
+title: "Pittsburgh 311 call analysis"
+author: "Brian Bowling"
+date: "August 23, 2018"
+output: html_document
+---
+
+```{r setup, echo=F,message=F}
+
+# libraries
+library(tidyverse)
+library(lubridate)
+library(stringr)
+library(readxl)
+library(leaflet)
+library(DT)
+library(leaflet)
+library(ggplot2)
+library(sf)
+library(leaflet.extras)
+library(knitr)
+library(pander)
+library(htmltools)
+
+# get the raw data
+# Downloaded on 8/7/2018
+data_file <- 'raw_data/76fda9d0-69be-4dd5-8108-0de7907fc5a4.csv'
+
+data_311 <- read_csv(data_file)
+
+# Preliminary cleanup
+# fix column names
+colnames(data_311) = tolower(make.names(colnames(data_311)))
+
+data_311 <- rename(data_311,'id'='x_id')
+
+# add created_date field used in several analyses
+data_311['created_date'] <- as.Date(data_311$created_on)
+
+# eliminate months with partial data
+# at the start
+culls <- data_311$id[data_311$created_date < as.Date('2015-05-01')]
+data_311 <- data_311[!data_311$id %in% culls,]
+# at the end
+culls <- data_311$id[data_311$created_date >= as.Date('2018-08-01')]
+data_311 <- data_311[!data_311$id %in% culls,]
+
+# get rid of calls dealing with issues outside of the city's boundaries
+data_311 <- data_311[!data_311$geo_accuracy == 'OUT_OF_BOUNDS',]
+
+# clean up and categorize request_type
+data_311$request_type = tolower(data_311$request_type)
+
+# read in edited category file, original came from wPRDC
+categories <- read_csv('raw_data/311-codebook-request-types-revised.csv')
+# trim to the columns needed in the join to the data_311 table
+categories <- categories %>%
+  select(request_type, category)
+
+# join categories to data_311
+data_311 <- left_join(data_311,categories, by='request_type')
+
+# prepare for mapping
+data_311 <- data_311 %>%
+  rename(lon = x, lat = y)
+
+
+```
+
+People contact Pittsburgh's 311 center to raise concerns about everything from cracked sidewalks to dangerous buildings.
+
+About 42 percent of the 311 calls made in Pittsburgh concern road and street issues such as potholes, obstructions, etc. The next two largest categories are neighborhood issues such as derelict buildings and overgrown lots and garbage and litter issues.
+
+
+Here's a list of the top 10 categories:
+```{r, echo=F}
+data_311 %>%
+  group_by(category) %>%
+  summarise(requests=n()) %>%
+  arrange(desc(requests)) %>%
+  mutate(pct_total = round(requests/sum(requests),digits=3)*100) %>%
+  slice(1:10) %>%
+  pander(big.mark=',',justify=c('left','right','right'),style='simple')
+
+
+```
+
+In terms of specific issues, potholes are the most frequent reason people contact the 311 Center. Here's a list of the top 10 issues:
+
+```{r, echo=F}
+data_311 %>%
+  group_by(request_type) %>%
+  summarize(requests = n()) %>%
+  mutate(pct_total = round(requests/sum(requests),digits=3) * 100) %>%
+  arrange(desc(requests)) %>%
+  slice(1:10) %>%
+  pander(big.mark=',',justify=c('left','right','right'),style='simple')
+
+```
+
+
+```{r dailies,echo=F}
+
+# calculate daily totals
+dailies <- data_311 %>%
+  group_by('year' = year(created_on), 'month' = month(created_on), 'day'=day(created_on)) %>%
+  summarize(requests=n())
+
+dailies_2015 <- dailies %>%
+  filter(year == '2015')
+
+dailies_2018 <- dailies %>%
+  filter(year=='2018')
+
+median_2015 = median(dailies_2015$requests)
+median_2018 = median(dailies_2018$requests)
+total = sum(dailies$requests)
+
+
+```
+
+From May 2015 to July 2018, the 311 center has been contacted `r prettyNum(total,big.mark=',')` times about issues within the city's boundaries. The median number of 311 calls has gone from `r prettyNum(median_2015,big.mark=',')` per day in 2015 to `r prettyNum(median_2018,big.mark=',')` per day so far in 2018. 
+
+The volume of requests follow a seasonal pattern with snow/ice removal driving up the 311 calls in winter months followed by an even higher number of pothole calls when things start thawing out.
+
+
+```{r monthlies, echo=F}
+
+data_311 %>%
+  group_by('year' = year(created_on), 'month' = month(created_on)) %>%
+  summarize(requests=n()) %>%
+  ggplot(aes(x=paste0(year,'-',str_pad(month,2,pad='0')),y=requests)) +
+  geom_col(color='blue',fill='blue',width=.8) +
+  expand_limits(y=0) +
+  theme(axis.text.x = element_text(angle = 90,hjust=1,vjust=0.5),
+        plot.title = element_text(hjust=0.5),
+        panel.grid = element_line(color='transparent')) +
+  labs(title = 'Number of 311 Requests by Year and Month',
+       x='Year-Month', y='Requests')
+
+```
+
+
+```{r, echo=F,message=F}
+
+ggsave('visuals/req_by_month.png')
+
+
+```
+
+```{r snow potholes, echo=F}
+
+data_311 %>%
+  filter(request_type %in% c('potholes','snow/ice removal')) %>%
+  group_by(year=year(created_on), month=month(created_on),request_type) %>%
+  summarize(requests = n()) %>%
+  ggplot(aes(x=paste0(year,'-',str_pad(month,2,pad='0')),y=requests)) +
+  geom_col(color='blue',fill='blue',width=0.8) +
+  theme(axis.text.x = element_text(angle = 90,hjust=1,vjust=0.5),
+        plot.title = element_text(hjust=0.5)) +
+  labs(title = 'Number of pothole and snow removal requests by Year and Month',
+       x='Year-Month', y='Requests') +
+  facet_wrap(~request_type,nrow=2)
+```
+
+
+```{r, message=F, results='hide',echo=F}
+
+ggsave('visuals/pothole_snow.png')
+
+```
+
+Finally, here's a map showing the total requests and the 2018 median monthly requests by neighborhood.
+
+```{r add shapefile, echo=F, message=F, warning=F, results='hide'}
+
+map_file <- 'raw_data/Neighborhoods_.shp'
+neighborhood_map <- st_read(map_file)
+
+```
+
+
+```{r map it, echo=F, message=F, warning=F}
+
+
+neighborhood_monthlies <- data_311 %>%
+  group_by(neighborhood, year = year(created_date), month = month(created_date)) %>%
+  summarize(requests = n())
+
+neighborhood_monthlies <- neighborhood_monthlies %>%
+  filter(year==2018) %>%
+  group_by(neighborhood) %>%
+  summarize(monthly_median = median(requests))
+
+
+neighborhood_request_count <- data_311 %>%
+  group_by(neighborhood) %>%
+  summarize(requests = n())
+
+neighborhood_request_count <- left_join(neighborhood_request_count,neighborhood_monthlies,by='neighborhood')
+
+
+data_311_map <- left_join(neighborhood_map,neighborhood_request_count,by=c('hood'='neighborhood'))
+
+popup_sb <- paste0(data_311_map$hood,", Total = ",
+                       as.character(prettyNum(data_311_map$requests,big.mark=',')),
+                       ", Monthly median = ",
+                       as.character(data_311_map$monthly_median))
+
+pal_sb <- colorNumeric("Reds", domain=data_311_map$requests)
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  setView(-80, 40.44, zoom=12) %>%
+  addPolygons(data=data_311_map,
+              fillColor= ~pal_sb(data_311_map$requests),
+              fillOpacity=0.9,
+              weight=0.2,
+              smoothFactor = 0.2,
+              highlightOptions = highlightOptions(
+                weight=5,
+                color= "#666",
+                fillOpacity = 0.7,
+                bringToFront = TRUE
+              ),
+              label=popup_sb,
+              labelOptions = labelOptions(
+                style = list("font-weight" = "normal", padding = "3px 8px"),
+                textsize = "15px",
+                direction = "auto")
+              ) %>%
+  addLegend(pal = pal_sb, 
+            values = data_311_map$requests, 
+            position = "bottomright", 
+            title = "311 calls by Neighborhood")
+
+```
+
