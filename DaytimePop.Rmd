@@ -1,0 +1,197 @@
+---
+title: "Daytime Pop Analysis"
+author: "Brian Bowling"
+date: "August 27, 2018"
+output: html_document
+---
+
+Load the libraries
+
+```{r setup, include=FALSE, echo=F}
+library(tidyverse)
+library(readr)
+library(sf)
+library(ggplot2)
+
+
+```
+
+Load the data
+
+```{r load data, echo=F}
+
+block_map <- st_read('raw_data/pitt_bg_hood.shp')
+pa_xwalk <- read_csv('raw_data/pa_xwalk.csv')
+neighborhood_map <- st_read('raw_data/Neighborhoods_.shp')
+
+
+```
+
+Create data frame from pa_xwalk that only includes Pittsburgh city data
+
+```{r}
+
+pitt_xwalk <- pa_xwalk %>%
+  filter(str_detect(ctycsubname,'Pittsburgh city'))
+
+pitt_xwalk$bgrp <- as.character(pitt_xwalk$bgrp)
+
+```
+
+Get list of pittsburgh block groups from pitt_xwalk and block_map and confirm they have the same block groups.
+
+```{r}
+
+pitt_bgs <- data.frame(bgs = unique(pitt_xwalk$bgrp))
+block_bgs <- data.frame(bgs = unique(block_map$GEOID))
+
+setdiff(pitt_bgs$bgs, block_bgs$bgs)
+
+```
+
+Now try to calculate populations
+
+```{r}
+
+pop_data <- read_csv('raw_data/acs_16_5yr_b01003_with_ann.csv', col_types = 'cccii', skip=1)
+
+colnames(pop_data) <- tolower(colnames(pop_data))
+
+pop_data <- pop_data %>%
+  select(geoid=id2, geography, pop=`estimate; total`)
+
+
+pitt_pop_data <- pop_data %>%
+  filter(pop_data$geoid %in% pitt_bgs$bgs)
+
+pitt_map <- left_join(block_map, pitt_pop_data, by=c('GEOID'='geoid'))
+
+pitt_neighborhoods <- pitt_map %>%
+  group_by(hood) %>%
+  summarise(pop=sum(pop))
+
+
+```
+
+Now get the work data
+
+```{r}
+
+
+pa_wac <- read_csv('raw_data/pa_wac_S000_JT00_2015.csv',col_types = cols(w_geocode='c'))
+pa_rac <- read_csv('raw_data/pa_rac_S000_JT00_2015.csv',col_types = cols(h_geocode='c'))
+
+pa_wac <- pa_wac %>%
+  select(w_geocode,workers=C000)
+
+pa_rac <- pa_rac %>%
+  select(h_geocode,workers=C000)
+
+pa_wac$w_bg <- substring(pa_wac$w_geocode,1,12)
+pa_rac$h_bg <- substring(pa_rac$h_geocode,1,12)
+
+pa_wac_bg <- pa_wac %>%
+  group_by(w_bg) %>%
+  summarise(workers_in_bg=sum(workers))
+
+pa_rac_bg <- pa_rac %>%
+  group_by(h_bg) %>%
+  summarise(workers_from_bg=sum(workers))
+
+pitt_wac_bg <- pa_wac_bg %>%
+  filter(w_bg %in% pitt_bgs$bgs)
+
+pitt_rac_bg <- pa_rac_bg %>%
+  filter(h_bg %in% pitt_bgs$bgs)
+
+pitt_map2 <- left_join(pitt_map, pitt_wac_bg,by=c('GEOID'='w_bg'))
+
+pitt_map2 <- left_join(pitt_map2, pitt_rac_bg, by=c("GEOID"='h_bg'))
+
+pitt_neighborhoods2 <- pitt_map2 %>%
+  group_by(hood) %>%
+  summarise(pop=sum(pop),
+            workers_in_hood = sum(workers_in_bg,na.rm=T),
+            workers_from_hood = sum(workers_from_bg,na.rm=T))
+
+
+pitt_neighborhoods2 <- pitt_neighborhoods2 %>%
+  mutate(daytime_pop = pop + (workers_in_hood - workers_from_hood))
+
+pitt_map2 <- left_join(pitt_map, pitt_wac_bg,by=c('GEOID'='w_bg'))
+
+pitt_map2 <- left_join(pitt_map2, pitt_rac_bg, by=c("GEOID"='h_bg'))
+
+pitt_neighborhoods2 <- pitt_map2 %>%
+  group_by(hood) %>%
+  summarise(pop=sum(pop),
+            workers_in_hood = sum(workers_in_bg,na.rm=T),
+            workers_from_hood = sum(workers_from_bg,na.rm=T))
+
+
+pitt_neighborhoods2 <- pitt_neighborhoods2 %>%
+  mutate(daytime_pop = pop + (workers_in_hood - workers_from_hood))
+
+```
+Add the work data to pitt_map
+
+```{r}
+
+pitt_map2 <- left_join(pitt_map, pitt_wac_bg,by=c('GEOID'='w_bg'))
+
+pitt_map2 <- left_join(pitt_map2, pitt_rac_bg, by=c("GEOID"='h_bg'))
+
+pitt_neighborhoods2 <- pitt_map2 %>%
+  group_by(hood) %>%
+  summarise(pop=sum(pop),
+            workers_in_hood = sum(workers_in_bg,na.rm=T),
+            workers_from_hood = sum(workers_from_bg,na.rm=T))
+
+
+pitt_neighborhoods2 <- pitt_neighborhoods2 %>%
+  mutate(daytime_pop = pop + (workers_in_hood - workers_from_hood))
+
+# qc
+sum(pitt_neighborhoods2$workers_in_hood,na.rm=T) == sum(pitt_wac_bg$workers_in_bg)
+
+```
+Map it?
+
+```{r}
+
+ggplot(pitt_neighborhoods2) +
+  geom_sf(aes(fill=daytime_pop)) +
+  scale_fill_distiller(direction=1, name="People") +
+  labs(title="Daytime population of Pittsburgh neighborhoods", caption="Data source: US Census")
+
+
+```
+
+```{r}
+
+pal <- colorNumeric("Blues", domain=pitt_neighborhoods2$daytime_pop)
+
+popup_sb <- paste0("Total daytime people: ", as.character(prettyNum(pitt_neighborhoods2$daytime_pop,big.mark=',')))
+
+m <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView( -79.996469, 40.440413, zoom = 12) %>% 
+  addPolygons(data = pitt_neighborhoods2, 
+              fillColor = ~pal(pitt_neighborhoods2$daytime_pop), 
+              fillOpacity = 0.9, 
+              weight = 0.2, 
+              smoothFactor = 0.2,
+              label=pitt_neighborhoods2$hood,
+              popup = ~popup_sb) %>%
+  addLegend(pal = pal, 
+            values = pitt_neighborhoods2$daytime_pop, 
+            position = "bottomright", 
+            title = "Daytime population")
+
+
+```
+
+```{r}
+saveWidget(m,file='daytime_pop.html',selfcontained = T)
+```
+

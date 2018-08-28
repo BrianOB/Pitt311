@@ -5,30 +5,43 @@ date: "August 23, 2018"
 output: html_document
 ---
 
-```{r setup, echo=F,message=F}
+```{r libraries, echo=F, message=F,warning=F}
 
-# libraries
+# general toolbox
 library(tidyverse)
-library(lubridate)
-library(stringr)
-library(readxl)
-library(leaflet)
-library(DT)
-library(leaflet)
-library(ggplot2)
+# for reading shapefiles, and simple features data frames
 library(sf)
-library(leaflet.extras)
-library(knitr)
+# for year and month functions
+library(lubridate)
+# for interactive mapping
+library(leaflet)
+# for better looking tables
 library(pander)
-library(htmltools)
 
-# get the raw data
-# Downloaded on 8/7/2018
-data_file <- 'raw_data/76fda9d0-69be-4dd5-8108-0de7907fc5a4.csv'
 
-data_311 <- read_csv(data_file)
+```
 
-# Preliminary cleanup
+```{r load data, echo=F, message=F, warning=F, results='hide'}
+
+# downloaded raw data from https://data.wprdc.org/dataset/311-data and renamed file to
+#   pitt311data.csv
+data_311 <- read_csv('raw_data/pitt311data.csv')
+# read in edited category file, original came from wPRDC
+categories <- read_csv('raw_data/311-codebook-request-types-revised.csv')
+# map files
+block_map <- st_read('raw_data/pitt_bg_hood.shp')
+# pop data
+pop_data <- read_csv('raw_data/acs_16_5yr_b01003_with_ann.csv', col_types = 'cccii', skip=1)
+# worker data (created with separate script, extract_pitt_lodes_data.R)
+pitt_wac_bg <- read_csv('raw_data/pitt_wac.csv',col_types = cols(w_bg='c'))
+pitt_rac_bg <- read_csv('raw_data/pitt_rac.csv',col_types = cols(h_bg='c'))
+
+
+```
+
+```{r data prep, echo=F, message=F}
+
+# 311 data
 # fix column names
 colnames(data_311) = tolower(make.names(colnames(data_311)))
 
@@ -51,9 +64,7 @@ data_311 <- data_311[!data_311$geo_accuracy == 'OUT_OF_BOUNDS',]
 # clean up and categorize request_type
 data_311$request_type = tolower(data_311$request_type)
 
-# read in edited category file, original came from wPRDC
-categories <- read_csv('raw_data/311-codebook-request-types-revised.csv')
-# trim to the columns needed in the join to the data_311 table
+# trim categories to the columns needed in the join to the data_311 table
 categories <- categories %>%
   select(request_type, category)
 
@@ -64,8 +75,91 @@ data_311 <- left_join(data_311,categories, by='request_type')
 data_311 <- data_311 %>%
   rename(lon = x, lat = y)
 
+# pitt block groups
+pitt_bgs <- data.frame(bgs = unique(block_map$GEOID))
+
+
+
+# population data prep
+# fix column names and delete unneeded columns
+colnames(pop_data) <- tolower(colnames(pop_data))
+pop_data <- pop_data %>%
+  select(geoid=id2, geography, pop=`estimate; total`)
+
+# limit to pittsburgh block groups
+pitt_pop_data <- pop_data %>%
+  filter(pop_data$geoid %in% pitt_bgs$bgs)
 
 ```
+
+```{r calculations, echo=F, message=F, warnings=F}
+
+# calculate daily totals
+dailies <- data_311 %>%
+  group_by('year' = year(created_on), 'month' = month(created_on), 'day'=day(created_on)) %>%
+  summarize(requests=n())
+
+dailies_2015 <- dailies %>%
+  filter(year == '2015')
+
+dailies_2018 <- dailies %>%
+  filter(year=='2018')
+
+median_2015 = median(dailies_2015$requests)
+median_2018 = median(dailies_2018$requests)
+total = sum(dailies$requests)
+
+
+```
+
+```{r map calculations, echo=F, warning=F, message=F}
+
+pitt_map <- left_join(block_map, pitt_pop_data, by=c('GEOID'='geoid'))
+
+pitt_map <- left_join(pitt_map, pitt_wac_bg,by=c('GEOID'='w_bg'))
+
+pitt_map <- left_join(pitt_map, pitt_rac_bg, by=c("GEOID"='h_bg'))
+
+pitt_neighborhoods <- pitt_map %>%
+  group_by(hood) %>%
+  summarise(pop=sum(pop),
+            workers_in_hood = sum(workers_in_bg,na.rm=T),
+            workers_from_hood = sum(workers_from_bg,na.rm=T))
+
+
+pitt_neighborhoods <- pitt_neighborhoods %>%
+  mutate(daytime_pop = pop + (workers_in_hood - workers_from_hood))
+
+neighborhood_monthlies <- data_311 %>%
+  group_by(neighborhood, year = year(created_date), month = month(created_date)) %>%
+  summarize(requests = n())
+
+neighborhood_monthlies <- neighborhood_monthlies %>%
+  filter(year==2018) %>%
+  group_by(neighborhood) %>%
+  summarize(monthly_median = median(requests))
+
+
+neighborhood_request_count <- data_311 %>%
+  group_by(neighborhood) %>%
+  summarize(requests = n())
+
+neighborhood_request_count <- left_join(neighborhood_request_count,neighborhood_monthlies,by='neighborhood')
+
+
+data_311_map <- left_join(pitt_neighborhoods,neighborhood_request_count,by=c('hood'='neighborhood'))
+
+data_311_map <- data_311_map %>%
+  mutate(requests_per = round(requests/daytime_pop,digits=3)*100)
+
+
+
+
+
+```
+
+
+
 
 People contact Pittsburgh's 311 center to raise concerns about everything from cracked sidewalks to dangerous buildings.
 
@@ -99,26 +193,6 @@ data_311 %>%
 ```
 
 
-```{r dailies,echo=F}
-
-# calculate daily totals
-dailies <- data_311 %>%
-  group_by('year' = year(created_on), 'month' = month(created_on), 'day'=day(created_on)) %>%
-  summarize(requests=n())
-
-dailies_2015 <- dailies %>%
-  filter(year == '2015')
-
-dailies_2018 <- dailies %>%
-  filter(year=='2018')
-
-median_2015 = median(dailies_2015$requests)
-median_2018 = median(dailies_2018$requests)
-total = sum(dailies$requests)
-
-
-```
-
 From May 2015 to July 2018, the 311 center has been contacted `r prettyNum(total,big.mark=',')` times about issues within the city's boundaries. The median number of 311 calls has gone from `r prettyNum(median_2015,big.mark=',')` per day in 2015 to `r prettyNum(median_2018,big.mark=',')` per day so far in 2018. 
 
 The volume of requests follow a seasonal pattern with snow/ice removal driving up the 311 calls in winter months followed by an even higher number of pothole calls when things start thawing out.
@@ -141,13 +215,6 @@ data_311 %>%
 ```
 
 
-```{r, echo=F,message=F}
-
-ggsave('visuals/req_by_month.png')
-
-
-```
-
 ```{r snow potholes, echo=F}
 
 data_311 %>%
@@ -163,45 +230,11 @@ data_311 %>%
   facet_wrap(~request_type,nrow=2)
 ```
 
-
-```{r, message=F, results='hide',echo=F}
-
-ggsave('visuals/pothole_snow.png')
-
-```
-
-Finally, here's a map showing the total requests and the 2018 median monthly requests by neighborhood.
-
-```{r add shapefile, echo=F, message=F, warning=F, results='hide'}
-
-map_file <- 'raw_data/Neighborhoods_.shp'
-neighborhood_map <- st_read(map_file)
-
-```
+# Maps
+Here's a map showing the total requests and the 2018 median monthly requests by neighborhood.
 
 
 ```{r map it, echo=F, message=F, warning=F}
-
-
-neighborhood_monthlies <- data_311 %>%
-  group_by(neighborhood, year = year(created_date), month = month(created_date)) %>%
-  summarize(requests = n())
-
-neighborhood_monthlies <- neighborhood_monthlies %>%
-  filter(year==2018) %>%
-  group_by(neighborhood) %>%
-  summarize(monthly_median = median(requests))
-
-
-neighborhood_request_count <- data_311 %>%
-  group_by(neighborhood) %>%
-  summarize(requests = n())
-
-neighborhood_request_count <- left_join(neighborhood_request_count,neighborhood_monthlies,by='neighborhood')
-
-
-data_311_map <- left_join(neighborhood_map,neighborhood_request_count,by=c('hood'='neighborhood'))
-
 popup_sb <- paste0(data_311_map$hood,", Total = ",
                        as.character(prettyNum(data_311_map$requests,big.mark=',')),
                        ", Monthly median = ",
@@ -233,6 +266,42 @@ leaflet() %>%
             values = data_311_map$requests, 
             position = "bottomright", 
             title = "311 calls by Neighborhood")
+
+```
+
+Here's a map showing the total call per person using each neighborhood's estimated daytime population as the denominator. The daytime population was calculated using 2016 American Community Survey population estimates and Census Bureau estimates of the number of jobs and employed residents in each area. The basic formula is area population + (workers with jobs in the area - residents in the area who have jobs). This accounts for people who live outside the area but work in the area as well as residents who work outside of the area.
+
+```{r per capita map, echo=F, warning=F, message=F}
+
+popup_sb <- paste0(data_311_map$hood,", Per person = ",
+                       as.character(data_311_map$requests_per))
+
+pal_sb <- colorNumeric("Reds", domain=data_311_map$requests_per)
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  setView(-80, 40.44, zoom=12) %>%
+  addPolygons(data=data_311_map,
+              fillColor= ~pal_sb(data_311_map$requests_per),
+              fillOpacity=0.9,
+              weight=0.2,
+              smoothFactor = 0.2,
+              highlightOptions = highlightOptions(
+                weight=5,
+                color= "#666",
+                fillOpacity = 0.7,
+                bringToFront = TRUE
+              ),
+              label=popup_sb,
+              labelOptions = labelOptions(
+                style = list("font-weight" = "normal", padding = "3px 8px"),
+                textsize = "15px",
+                direction = "auto")
+              ) %>%
+  addLegend(pal = pal_sb, 
+            values = data_311_map$requests_per, 
+            position = "bottomright", 
+            title = "311 calls per daytime population")
 
 ```
 
